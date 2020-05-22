@@ -1,20 +1,17 @@
+import { PATH } from "./Config/config.ts"
+import router from "./router.ts"
+const env = Deno.env.toObject()
+const HOST = env.HOST || 'localhost'
+const PORT = env.PORT || 7700
 
-import {PATH} from './Config/config.ts'
-// import { serve } from  '../deno/std/http/server.ts'
-let serverModule = await import(`${PATH}std/http/server.ts`);//
-const serve = await serverModule.serve
+ let oakModule = await import(`${PATH}x/oak/mod.ts`)
+ const Application = await oakModule.Application
 
+const app = new Application()
 
-   
-    const s = serve({ port: 5000 })
+app.use(router.routes())
+app.use(router.allowedMethods())
 
+console.log(`Listening on the  http://${HOST}:${PORT}`)
 
-    console.log(`${PATH}std/http/server.ts`)
-    console.log("http://localhost:5000/");
-    for await (const req of s) {
-      req.respond({ body: `Hello World\n ${PATH}` })
-    }
-
-
-
-
+await app.listen(`${HOST}:${PORT}`)
