@@ -22,4 +22,20 @@ const getUsers = ({ response }: { response: any }) => {
   response.body = users;
 };
 
-export { getUsers };
+const getUser = (
+  { params, response }: { params: { id: string }; response: any },
+) => {
+  const user: IUser | undefined = searchUserById(params.id);
+  if (!user) {
+    response.status = 404;
+    response.body = { message: "User not found" };
+  } else {
+    response.status = 200;
+    response.body = user;
+  }
+};
+
+const searchUserById = (id: string): (IUser | undefined) =>
+  users.find((item) => item.id === id);
+
+export { getUsers, getUser };
