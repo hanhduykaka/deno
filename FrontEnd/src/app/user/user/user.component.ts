@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-user',
@@ -11,6 +12,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+
 
   }
 
