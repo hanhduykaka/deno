@@ -22,7 +22,12 @@ export class UserComponent implements OnInit {
       filter(text => text.length > 2),
       debounceTime(10),
       distinctUntilChanged(),
-      switchMap(() => ajax('https://5b344f77d167760014c265ab.mockapi.io/_tai/user'))
+      switchMap(() => ajax('https://5b344f77d167760014c265ab.mockapi.io/_tai/user')),
+      filter((res) => {
+        const results = res.response;
+        console.log(results)
+        return results;
+      })
     );
 
     typeahead.subscribe(data => {
