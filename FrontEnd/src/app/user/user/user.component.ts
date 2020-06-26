@@ -12,26 +12,26 @@ export class UserComponent implements OnInit {
 
   constructor(private userService: UserService) { }
   public users: any;
-
+  private input: any;
   ngOnInit(): void {
 
     const searchBox = document.getElementById('search-box');
 
     const typeahead = fromEvent(searchBox, 'input').pipe(
-      map((e: KeyboardEvent) => (e.target as HTMLInputElement).value),
+      map((e: KeyboardEvent) => {
+        this.input = (e.target as HTMLInputElement).value;
+        return this.input;
+      }),
       filter(text => text.length > 2),
       debounceTime(10),
       distinctUntilChanged(),
       switchMap(() => ajax('https://5b344f77d167760014c265ab.mockapi.io/_tai/user')),
-      filter((res) => {
-        const results = res.response;
-        console.log(results)
-        return results;
-      })
+
     );
 
     typeahead.subscribe(data => {
-      this.users = data;
+      this.users = data.response;
+      this.users = this.users.filter((res) =>  res.name.includes(this.input));
     });
   }
 
