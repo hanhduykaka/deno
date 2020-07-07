@@ -30,8 +30,7 @@ export class UserComponent implements OnInit {
     );
 
     typeahead.subscribe(data => {
-      this.users = data.response;
-      this.users = this.users.filter((res) =>  res.name.includes(this.input));
+      this.users = data.response.filter((res) =>  res.name.includes(this.input));
     });
   }
 
