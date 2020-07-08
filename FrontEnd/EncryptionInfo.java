@@ -64,7 +64,7 @@ public class EncryptionInfo implements DataObjectInterface{
 	 * The Constant ATTRIBUTE_NAME_LIMITPRINTTIME.
 	 *
 	 * @author tuyentn.nn
-	 * @since [V2.30 EQ007] EQF#C995 (Jun 5, 2017)
+	 * @since [V2.30 EQ007] EQF#C995  T(Jun 5, 2017)
 	 * @version V3.50EQ001 EQF#D263(EQF#C995) 2020/07/06 loctn.ig
 	 */
 	private static final String ATTRIBUTE_NAME_LIMITPRINTTIME = "LimitPrintTime";
